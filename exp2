@@ -1,0 +1,21 @@
+//Servo motor is rotating fast but the speed is decresaed some what and the angle is same less than 30.
+
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+
+void setup() {
+  myservo.attach(2);
+  
+}
+
+void loop() {
+  myservo.write(0);
+  delay(100);
+  myservo.write(180);
+  delay(100);
+  myservo.write(0);
+  delay(100);
+  // put your main code here, to run repeatedly:
+
+}
