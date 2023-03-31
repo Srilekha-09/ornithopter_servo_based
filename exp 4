@@ -1,0 +1,37 @@
+//Servo rotates with less speed and only once it rotates
+
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+void setup(){
+  myservo.attach(2); //D4
+
+
+
+//delay(200);
+
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+moveTo(60,15);
+}
+int pos1=0;
+void moveTo(int position,int speed){
+  int mapspeed=map(speed,0,30,30,0);
+  if(position>pos){
+    for(int pos=pos1;pos<=position;pos+=1){
+      myservo.write(pos);
+      pos1=pos;
+      delay(mapspeed);
+    }
+  }else{
+    for(int pos=pos1;pos>=position;pos-=1){
+      myservo.write(pos);
+      pos1=pos;
+      delay(mapspeed);
+    
+    
+      
+    }
+  }
+}
