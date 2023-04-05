@@ -16,3 +16,6 @@ EXP-4 -->The servo motor is moving with less speed and more angle.
 
 
 Exp-5 -->The servo motor is displaying the feedback.
+
+
+Exp-6 -->The time taken to rotate from 0 degrees to 60 degrees is noted and the speed is increased .
