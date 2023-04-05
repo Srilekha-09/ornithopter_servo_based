@@ -1,0 +1,47 @@
+//The time taken to rotate from 0 degrees to 60 degrees is noted and the speed is increased .
+
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+
+void setup() {
+  Serial.begin(9600);  // initialize serial communication
+  myservo.attach(9);   // attaches the servo on pin 9 to the servo object
+}
+
+void loop() {
+  int angle = 0;          // initialize the angle to 0 degrees
+  int time_start = 0;     // variable to store the start time
+  int time_end = 0;       // variable to store the end time
+
+  // rotate servo from 0 to 60 degrees
+  while (angle <= 90) {
+    myservo.write(angle); // set the servo position
+    delay(5);            // wait for the servo to reach the position
+    angle += 1;           // increase the angle by 1 degree
+  }
+
+  // measure the time it takes for the servo to rotate from 0 to 60 degrees
+  time_start = millis();    // record the start time
+  angle = 0;                // reset the angle to 0 degrees
+  while (angle <= 60) {
+    myservo.write(angle);   // set the servo position
+    delay(5);              // wait for the servo to reach the position
+    angle += 1;             // increase the angle by 1 degree
+  }
+  time_end = millis();      // record the end time
+
+  // print the time it took to rotate from 0 to 60 degrees
+  int time_elapsed = time_end - time_start;
+  Serial.print("Time elapsed: ");
+  Serial.print(time_elapsed);
+  Serial.println(" ms");
+
+  // rotate the servo back to 0 degrees
+  angle = 60;             // set the angle to 60 degrees
+  while (angle >= 0) {
+    myservo.write(angle); // set the servo position
+    delay(5);            // wait for the servo to reach the position
+    angle -= 1;           // decrease the angle by 1 degree
+  }
+}
