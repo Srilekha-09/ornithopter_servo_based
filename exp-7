@@ -1,0 +1,31 @@
+#include <Servo.h>
+
+Servo myServo; // create a Servo object
+
+int angle = 0; // initialize the angle to 0 degrees
+int speed = 0; // initialize the speed to 0
+
+void setup() {
+  myServo.attach(9); // attaches the servo on pin 9 to the Servo object
+  delay(1000); // wait for the servo to initialize
+}
+
+void loop() {
+  // determine the time taken for the servo to rotate from 0 to 60 degrees
+  unsigned long startTime = millis();
+  myServo.write(60); // rotate the servo to 60 degrees
+  while (myServo.read() < 60) {} // wait until the servo reaches 60 degrees
+  unsigned long endTime = millis();
+  unsigned long timeTaken = endTime - startTime;
+
+  // calculate the speed of the servo
+  speed = 60 / timeTaken;
+
+  // adjust the input signal to increase the speed
+  angle += speed;
+  if (angle > 180) {
+    angle = 0; // reset the angle to 0 degrees if it exceeds 180 degrees
+  }
+  myServo.write(angle); // rotate the servo to the new angle
+  delay(10); // wait for the servo to reach the new angle
+}
